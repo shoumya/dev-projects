@@ -1,0 +1,23 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="color:black;">Launch TimeLine</div>
+<!-- Select the years for which the timeline should be shown -->
+<div class="form-group" style="width:25%;margin-left:25px;">
+  <label for="sel1">Select Years</label>
+  <select class="form-control" id="sel1" (change)="reRenderChart($event.target.value)">
+    <option [value]="null" selected>Select Years</option>
+    <option *ngFor="let year of renditionYears" [value]="year">{{ year }}</option>
+  </select>
+</div>
+
+<div id="chart" *ngIf="chartData.length > 0">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [fill]="chartOptions.fill"
+      [grid]="chartOptions.grid"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+    ></apx-chart>
+  </div>

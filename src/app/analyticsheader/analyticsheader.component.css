@@ -1,0 +1,14 @@
+.analytics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+/*
+#analyticsHeader {
+    background: #bfeaf1;
+    grid-area: analyticsHeader;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    padding: 15px;
+}
+*/

@@ -1,0 +1,155 @@
+<div class="container">
+  <div id="analyticsHeader">
+    <app-analyticsheader></app-analyticsheader>
+  </div>
+  <div id="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <!-- This will be the complete launch dashboard-->
+  <div id="upcoming">
+    <div *ngIf="allLaunchesDataLoaded">
+      <div class="card" style="background-color: #1d1d1d">
+        <div class="card-body">
+          <h5 class="card-title" style="color: white">Upcoming Launches</h5>
+          <p class="card-text">
+            <span class="badge badge-success" style="padding: 5px">{{ upcomingLaunchesInfo.count }}</span>
+          </p>
+
+          <a
+            href="#"
+            class="btn btn-dark btn-sm"
+            data-toggle="modal"
+            data-target="#launchCountInformation"
+            style="border: 2px solid white"
+            (click)="fetchInfoFor('UPCOMING LAUNCHES')"
+            >More.....</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="past">
+    <div *ngIf="pastLaunchesDataLoaded">
+      <div class="card" style="background-color: #1d1d1d">
+        <div class="card-body">
+          <h5 class="card-title" style="color: white">Past Launches</h5>
+          <p class="card-text">
+            <span class="badge badge-success" style="padding: 5px">{{ pastLaunchesInfo.count }}</span>
+          </p>
+          <a
+            href="#"
+            class="btn btn-dark btn-sm"
+            data-toggle="modal"
+            data-target="#launchCountInformation"
+            style="border: 2px solid white"
+            (click)="fetchInfoFor('PAST LAUNCHES')"
+            >More.....</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="total">
+    <div *ngIf="allLaunchesDataLoaded">
+      <div class="card" style="background-color: #1d1d1d">
+        <div class="card-body">
+          <h5 class="card-title" style="color: white">Total Launches</h5>
+          <p class="card-text">
+            <span class="badge badge-success" style="padding: 5px">{{ totalLaunchesInfo.count }}</span>
+          </p>
+          <a
+            href="#"
+            class="btn btn-dark btn-sm"
+            data-toggle="modal"
+            data-target="#launchCountInformation"
+            style="border: 2px solid white"
+            (click)="fetchInfoFor('TOTAL LAUNCHES')"
+          >
+            More.....
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="launchPadLocations">
+    
+    <div class="text-center">
+      <div
+        class="spinner-grow"
+        style="width: 3rem; height: 3rem"
+        role="status"
+        *ngIf="!launchsPadsDataLoaded"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <app-launchpad-locations-map [launchPadLocationsData]="launchPads"
+      *ngIf="launchsPadsDataLoaded"
+    ></app-launchpad-locations-map>
+  </div>
+
+  <div id="launchOverTime">
+    
+    <div class="text-center">
+      <div
+        class="spinner-grow"
+        style="width: 3rem; height: 3rem"
+        role="status"
+        *ngIf="!allLaunchesDataLoaded"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <app-launch-over-time 
+      *ngIf="allLaunchesDataLoaded" 
+      [launchYearsChartData]="launchYearsChartData">
+    </app-launch-over-time>
+  </div>
+
+  <div id="launchTimeline">
+    
+    <div class="text-center">
+      <div
+        class="spinner-grow"
+        style="width: 3rem; height: 3rem"
+        role="status"
+        *ngIf="!allLaunchesDataLoaded"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
+    <app-launch-timeline 
+      *ngIf="allLaunchesDataLoaded" 
+      [launchTimeLineData]="launchTimeLineChartData">
+  </app-launch-timeline>
+  </div>
+
+  <footer>
+    <app-site-footer></app-site-footer>
+  </footer>
+</div>
+
+<!-- Modal To show more information on launch Count-->
+<div id="launchCountInformation" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(97, 135, 240)">
+        <h4 class="modal-title">Launches Count Information</h4>
+      </div>
+      <div class="modal-body">
+        <p>Info on the analytics count data for - <span style="color:brown">{{ showAnalyticalDataFor }}</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
