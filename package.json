@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "build-production": "ng build --c=production --outputPath=dist-production",
+    "build-production": "ng build --prod",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
